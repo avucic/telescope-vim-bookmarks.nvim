@@ -6,6 +6,8 @@ local action_state = require('telescope.actions.state')
 function delete_bookmark(entry)
     vim.fn['bm_sign#del'](entry.filename, tonumber(entry.value.sign_idx))
     vim.fn['bm#del_bookmark_at_line'](entry.filename, tonumber(entry.lnum))
+	-- TODO temp fix to be able to delete bookmark from Telescope
+	vim.cmd("call BookmarkSave(g:bookmark_auto_save_file, 1)")
 end
 
 local delete_at_cursor = function(prompt_bufnr)
